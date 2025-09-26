@@ -1,0 +1,10 @@
+{
+  "C": "Transporte Aéreo Público Regular",
+  "N": "Transporte Aéreo Público Não Regular (Charter/Fretamento)",
+  "G": "Aviação Geral",
+  "S": "Serviços Aéreos Especializados",
+  "E": "Experimental",
+  "M": "Militar",
+  "T": "Táxi Aéreo",
+  "P": "Aviação Privada"
+}
