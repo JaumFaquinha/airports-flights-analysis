@@ -1,3 +1,4 @@
+# ✈️ Air Traffic Data Pipeline & Dashboard
 
 ## Contexto e Motivação
 
@@ -22,7 +23,7 @@ O objetivo foi construir um **pipeline de transformação de dados**, capaz de g
     
 - **Fusos horários e horários de voos:** datas vinham como strings, sem timezone correto; análises de atrasos e sazonalidade dependiam de conversões confiáveis para **GMT-3 (São Paulo)**.
 
-## 3. Soluções adotadas
+## Soluções adotadas
 
 ### 🚀 Utilização **Polars**
 
@@ -178,7 +179,7 @@ class Transformer:
 - Fundamental para comparar períodos de **restrição de voos (2020)** com a **recuperação em 2021–2022**.
     
 
-#### ⚡ Otimização para dashboards
+### ⚡ Otimização para dashboards
 
 - Transformações pesadas foram pré-processadas, evitando recálculos ao vivo.
 - O Streamlit recebeu dados já limpos, permitindo filtros rápidos mesmo com grande volume.
@@ -204,3 +205,88 @@ class Transformer:
 - **Polars entrega performance e escalabilidade**, mas exige atenção a tipos de colunas e joins.
 - Manter arquivos auxiliares de mapeamento (como o JSON de companhias) facilita manutenção contínua.
 - **Pré-processar e limpar dados** antes de enviar para visualização garante **boa experiência para o usuário final**.
+
+
+## 📖 Sobre o projeto
+
+Este projeto realiza **extração, transformação e análise de dados de voos e aeroportos**, com foco em:
+
+- **Padronização de companhias aéreas** via códigos ICAO.
+- **Enriquecimento de dados de aeroportos** com nomes, coordenadas, município, país e continente.
+- **Conversão de datas para fuso horário GMT-3 (America/Sao_Paulo)** para análises temporais confiáveis.
+- **Visualização interativa** através de um dashboard em **Streamlit**.
+
+O período analisado inclui os anos de **2020, 2021 e 2022**, destacando o impacto da **pandemia de COVID-19** sobre o tráfego aéreo e a recuperação gradual do setor.
+
+---
+
+## 🚀 Principais recursos
+
+- ⚡ **Polars** para processamento rápido de milhões de linhas.
+- 🛫 Mapeamento padronizado de companhias aéreas com suporte a acentuação correta.
+- 🛬 Integração com base de aeroportos (ICAO, nome, país, município, coordenadas).
+- ⏱️ Conversão de datas e horários para GMT-3.
+- 📊 Dashboard interativo com filtros, gráficos e análise temporal.
+- 🦠 Contexto COVID-19 incluído para análises antes, durante e depois da pandemia.
+
+---
+
+## 🗂️ Estrutura de diretórios
+```
+├── app/
+│ ├── data/ # Dados brutos e transformados
+│ ├── docs/json/ # Arquivo JSON com mapeamento ICAO de companhias
+│ ├── dashboard/ # Código do dashboard Streamlit
+│ ├── model/ # Transformações de dados em Polars
+│ └── utils/ # Funções auxiliares (leitura, timezone, etc.)
+├── requirements.txt
+├── README.md
+└── main.py # Script principal para execução local
+```
+
+---
+
+## ⚙️ Instalação e execução
+
+### 1. Instalar UV
+
+https://docs.astral.sh/uv/getting-started/installation
+
+```bash
+#Windows (Powershell)
+powershell -c "irm https://astral.sh/uv/install.ps1 | more"
+
+#MacOs & Linux
+curl -LsSf https://astral.sh/uv/install.sh | less
+```
+
+### 2. Clonar o repositório
+```bash
+git clone https://github.com/seu-usuario/air-traffic-dashboard.git
+cd air-traffic-dashboard
+```
+
+### 3. Criar ambiente virtual
+```bash
+uv venv
+source .venv/bin/activate   # Linux/Mac
+# ou
+.venv\Scripts\activate      # Windows
+```
+
+### 4. Instalar dependências
+```bash
+uv sync
+```
+
+### 5. Executar o pipeline de transformação
+```bash
+uv run main.py
+```
+
+### 6. Iniciar o dashboard interativo
+```bash
+#Caminho absoluto main.py
+streamlit run {CAMINHO}\{DO}\{PROJETO}\airports-flights-analysis\main.py
+```
+O dashboard ficará disponível em "http://localhost:8501" 
