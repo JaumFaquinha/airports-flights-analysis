@@ -7,7 +7,7 @@ class Transformer:
     def __init__(self):
         pass
     
-    def transform(self, df: pl.DataFrame):
+    def transform(self, df: pl.DataFrame) -> pl.DataFrame:
         df = self._map_rows(df)
         df = self._remove_invalid_fligths(df)
         df = self._is_late(df)
